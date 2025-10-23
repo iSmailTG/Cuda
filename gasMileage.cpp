@@ -2,37 +2,6 @@
 #include <string>
 #include <cmath>
 using namespace std;
-
-int mail()
-{
-  float distance;
-  string make;
-  string model;
-  float tankCapacity;
-  float mpg;
-
-  cout << "Enter the dictance of the trip: " << distance << endl;
-  cin >> distance;
-  cout << "Enter the brand of the car: " << make << endl;
-  cin >> make;
-  cout << "Enter the model of the car: " << model << endl;
-  cin >> model;
-  cout << "Enter the tank capacity: " << tankCapacity << endl;
-  cin >> tankCapacity;
-  cout << "Enter the MPG of the car: " << mpg << endl;
-  cin >> mpg;
-
-  float mileageOnFullTank = tankCapacity * mpg;
-  float numOfStops = int( distance / mileageOnFullTank);
-  float gasRequired  = distance / mpg;
-%%writefile gasMileage.cpp
-
-#include <iostream>
-#include <string>
-#include <cmath>
-using namespace std;
-
-
 int main()
 {
   float distance;
@@ -57,8 +26,7 @@ int main()
   cin >> mpg;
 
 
-  float mileageOnFullTank;numOfst
-  mileageOnFullTank = mpg * carCapacity;
+  float mileageOnFullTank = mpg * carCapacity;
   float numOfStops = int(distance / mileageOnFullTank);
   float gasRequired = distance / mpg;
   float galonsLeft = ((numOfStops+1) * carCapacity) - gasRequired;
