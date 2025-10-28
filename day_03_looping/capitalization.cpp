@@ -5,9 +5,26 @@ using namespace std;
 int main()
 {
   string sentence = "Today was a bit sunny.";
-  string sentense0 = "Today\n was a bit \n sunny\n";
   cout << sentence << endl;
-  cout << sentense0;
-
+  bool isCap = false;
+  for(int i=0; i < sentence.length(); i++)
+  {
+    if(isCap)
+    {
+      char capL = toupper(sentence[i]);
+      cout << capL;
+      isCap = false;
+    }
+    else 
+    {
+      cout << sentence[i];
+    }
+    if(sentence[i] == ' ')
+    {
+      isCap = true;
+    }
+      
+  }
+  cout << endl;
   return 0;
 }
