@@ -6,6 +6,7 @@ int main()
 {
   string sentence = "Today was a bit sunny.";
   cout << sentence << endl;
+  cout << "After Capitalization: " << endl;
   bool isCap = false;
   for(int i=0; i < sentence.length(); i++)
   {
