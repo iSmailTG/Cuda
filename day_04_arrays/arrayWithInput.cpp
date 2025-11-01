@@ -18,17 +18,14 @@ int main()
     nums[i] = num;
     numberOfElements++;
 
-    if(numberOfElements <= 19)
+    if(i < 19)
     {
       cout << "Would you like to add another number? (Y)es Or (N)o " << endl;
       cin >> response;
-      if( response == 'Y')
-        numberOfElements++;
-    
-      else 
+      if( response != 'Y')
       {
         break;
-      }
+      }  
     }      
     sum = sum + nums[i];
     cout << sum << " " << nums[i] << endl;
