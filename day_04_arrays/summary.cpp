@@ -14,5 +14,6 @@ int main()
   ptr = &num;
   cout << "print the address of the number through a pointer: " << ptr << endl;
 
+
   return 0;
 }
