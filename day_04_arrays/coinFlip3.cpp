@@ -18,6 +18,7 @@ int main()
   {
 
     float percentageOfHeadsInARow[NUM_OF_ROWS];
+    float sumOfRowPercentages = 0.0;
     int numOfHeadsPerRow = 0;
     for(int col = 0; col < NUM_OF_FLIP_PER_ROW; col++)
     {
@@ -30,15 +31,19 @@ int main()
       {
         coinFlip[row][col] = 'T';
       }  
-    
+      cout << coinFlip[row][col] << " ";
       
     }
     
     percentageOfHeadsInARow[row] = (float)numOfHeadsPerRow / (float)NUM_OF_FLIP_PER_ROW;
+    sumOfRowPercentages += percentageOfHeadsInARow[row];
 
-    cout << " | Heads: " << percentageOfHeadsInARow[row] * 100 << "%.";            
-    cout << " | Tails: " << ((1 - percentageOfHeadsInARow[row]) * 100) << "%.";    
-    cout << endl;                                                                               }
+
+    cout << " | Heads: " << percentageOfHeadsInARow[row] * 100 << "%.";
+    cout << " | Tails: " << ((1 - percentageOfHeadsInARow[row]) * 100) << "%.";
+    cout << sumOfRowPercentages;
+    cout << endl;
+  }
 
   return 0;
 }  
