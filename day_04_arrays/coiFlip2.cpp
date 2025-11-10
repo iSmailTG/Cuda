@@ -10,6 +10,7 @@ int main()
   const int NUMS_FLIPS_IN_ROW = 12;
   char coinFlip[NUMS_ROWS][NUMS_FLIPS_IN_ROW];
   float percentageOfHeadsInARow[NUMS_ROWS];
+  float sumOfPercentageInARow = 0.0;
   srand(time(0));
   for(int row = 0; row < NUMS_ROWS; row++)
   {
@@ -26,9 +27,16 @@ int main()
       {
         coinFlip[row][col] = 'T';
       }
-      percentageOfHeadsInARow[row]= numOfHeadsInARow / (float)NUMS_FLIPS_IN_ROW;
+
+
+
+
+
+
     }
-  }
+    percentageOfHeadsInARow[row]= (float)numOfHeadsInARow / (float)NUMS_FLIPS_IN_ROW;       
+    sumOfPercentageInARow += percentageOfHeadsInARow[row];                                  
+  } 
   for(int row = 0; row < NUMS_ROWS; row++)
   {
     cout << fixed << setprecision(2);
@@ -40,6 +48,8 @@ int main()
     cout << "| Heads: " << (percentageOfHeadsInARow[row] * 100) << "% ";
     cout << "| Tails: " <<  ((1 - percentageOfHeadsInARow[row]) * 100) << "% ";
     cout << endl;
-  }
+  } 
+  cout << "Average of the sum of percentage of heads: " << (sumOfPercentageInARow  / (float)NUMS_ROWS) * 100;
+  cout << "Average of the sum of percentage of tails: " << ((1 - sumOfPercentageInARow) / (float)NUMS_ROWS) * 100 << endl;
   return 0;
 }
