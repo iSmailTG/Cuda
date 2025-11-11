@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <iomanip>
 using namespace std;
 
 
@@ -16,6 +17,7 @@ int main()
   float  sumOfRowPercentages = 0.0;
   for(int row = 0; row < NUM_OF_ROWS; row++)
   {
+    cout << fixed << setprecision(2);
 
     float percentageOfHeadsInARow[NUM_OF_ROWS];
     float sumOfRowPercentages = 0.0;
@@ -36,12 +38,12 @@ int main()
     }
     
     percentageOfHeadsInARow[row] = (float)numOfHeadsPerRow / (float)NUM_OF_FLIP_PER_ROW;
-    sumOfRowPercentages += percentageOfHeadsInARow[row];
+    //sumOfRowPercentages += percentageOfHeadsInARow[row];
 
 
     cout << " | Heads: " << percentageOfHeadsInARow[row] * 100 << "%.";
     cout << " | Tails: " << ((1 - percentageOfHeadsInARow[row]) * 100) << "%.";
-    cout << sumOfRowPercentages;
+    //cout << sumOfRowPercentages;
     cout << endl;
   }
 
