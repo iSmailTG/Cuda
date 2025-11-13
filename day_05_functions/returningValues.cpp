@@ -4,27 +4,33 @@
 using namespace std;
 
 
-void flipCoin();
+string flipCoin();
 int main()
 {
   srand(time(0));
-  flipCoin();
-  
-
-
-
-
+  string flips[10];
+  for(int i = 0; i < 10; i++)
+  {
+    flips[i] = flipCoin();
+  }    
+  for(int i=0; i < 10; i++)
+  {
+    cout << i + 1 << ". " << flips[i] << endl;
+  }
   return 0;
 }  
 
-void flipCoin()
+string flipCoin()
 {
+  string retVal;
   if(rand() % 2 == 0)
   {
-    cout << "Head" << endl;
+    retVal = "Head";
   }
   else
   {
-    cout << "Tail" << endl;
+    retVal = "Tail";
   }
+
+  return retVal;
 }
