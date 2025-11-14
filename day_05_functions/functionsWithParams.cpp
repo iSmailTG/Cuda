@@ -30,7 +30,7 @@ int main()
 
 void printDate(int theYear, int theMonth, int theDay)
 {
-  cout << getMonthName(theMonth) << " " << theDay << ", " << theYear << endl;
+  cout << getMonthName(theMonth) << " " << theDay << ", " << theYear << "." << endl;
 }
 string getMonthName(int monthNumber)
 {
