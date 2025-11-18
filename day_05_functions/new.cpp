@@ -5,5 +5,6 @@
 
 int main()
 {
+  cout << "Welcome back" << endl;
   return 0;
 }
