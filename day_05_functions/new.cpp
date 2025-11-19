@@ -7,5 +7,6 @@ int main()
 {
   cout << "Welcome back" << endl;
   cout << "new stuff" << endl;
+  cout << endl;
   return 0;
 }
