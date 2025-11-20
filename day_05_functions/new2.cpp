@@ -5,5 +5,5 @@
 int main()
 {
   cout << "new stuff";
-
+  cout << endl;
 }
