@@ -1,89 +1,123 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include <cmath>
 using namespace std;
 
-
-void printDate(int theYear, int theMonth, int theDay);
-string getMonthName(int monthNumber);
-
+void dateFormat(int theMonth, int theDay, int theYear);
+string monthNum(int monthInput);
+string getDayOrdinal(int dayNumber);
 int main()
 {
-  int year;
   int month;
   int day;
+  int year;
 
-  cout << "Enter in a year: " << endl;
+  cout << "Enter a month: " << endl;
+  cin >> month;
+  if(month > 12)
+  {
+    cout << "Month error." << endl;
+    cout << "Please enter valid month: " << endl;
+    cin >> month;
+    
+  }
+
+  cout << "Enter a day: " << endl;
+  cin >> day;
+  
+  cout << "Enter a year: " << endl;
   cin >> year;
 
-  cout << "Enter in a month (1-12): " << endl;
-  cin >> month;
-
-  cout << "Enter in a day (1-31): " << endl;
-  cin >> day;
-
-  printDate(year, month, day);
-  
+  dateFormat(month, day, year);
 
   return 0;
 }
 
-void printDate(int theYear, int theMonth, int theDay)
+
+void dateFormat(int theMonth, int theDay, int theYear)
 {
-  cout << getMonthName(theMonth) << " " << theDay << ", " << theYear << "." << endl;
+  cout << monthNum(theMonth) << " " << getDayOrdinal(theDay) << ", " << theYear <<"." << endl;
+
+
 }
-string getMonthName(int monthNumber)
+string monthNum(int monthInput)
 {
-  string retVal;
-  if(monthNumber == 1)
+  string month;
+  if(monthInput == 1)
   {
-    retVal = "January";
+    month = "January";
   }
-  else if(monthNumber == 2)
+  else if(monthInput == 2)
   {
-    retVal = "February";
+    month = "February";
   }
-  else if(monthNumber == 3)
+  else if(monthInput == 3)
   {
-    retVal = "March";
+    month = "March";
+
   }
-  else if(monthNumber == 4)
+  else if(monthInput == 4)
   {
-    retVal = "April";
+    month = "April";
   }
-  else if(monthNumber == 5)
+  else if(monthInput == 5)
   {
-    retVal = "May";
+    month = "May";
   }
-  else if(monthNumber == 6)
+  else if(monthInput == 6)
   {
-    retVal = "June";
+    month = "June";
   }
-  else if(monthNumber == 7)
+  else if(monthInput == 7)
   {
-    retVal = "July";
+    month = "July";
   }
-  else if(monthNumber == 8)
+  else if(monthInput == 8)
   {
-    retVal = "August";
+    month = "August";
   }
-  else if(monthNumber == 9)
+  else if(monthInput == 9)
   {
-    retVal = "September";
+    month = "September";
   }
-  else if(monthNumber == 10)
+  else if(monthInput == 10)
   {
-    retVal = "October";
+    month = "October";
   }
-  else if(monthNumber == 11)
+  else if(monthInput == 11)
   {
-    retVal = "November";
+    month = "November";
   }
-  else if(monthNumber == 12)
+  else if(monthInput == 12)
   {
-    retVal = "December";
+    month = "December";
   }
 
+  return month;
+}
+string getDayOrdinal(int dayNumber)
+{
+  string retVal;
+
+  if(dayNumber == 11 || dayNumber == 12 || dayNumber == 13) 
+  {
+        retVal = to_string(dayNumber) + "th";
+  }
+  else if(dayNumber % 10 == 1) 
+  {
+        retVal = to_string(dayNumber) + "st";
+  }
+  else if(dayNumber % 10 == 2) 
+  {
+        retVal = to_string(dayNumber) + "nd";
+  }
+  else if(dayNumber % 10 == 3) 
+  {
+        retVal = to_string(dayNumber) + "rd";
+  }
+  else
+  {
+        retVal = to_string(dayNumber) + "th";
+  }
   return retVal;
 }
