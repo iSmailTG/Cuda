@@ -19,7 +19,7 @@ __global__ void kernel_matmul(float* A, float* B, float* C,
   }
 }
 
-exter "C"
+extern "C"
 {
   void matmul_cuda(float* A, float* B, float* C,
                    int M, int N, int K)
