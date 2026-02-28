@@ -9,15 +9,15 @@ if not os.path.exists('./kernels/matmul.so'):
 
 lib_matmul = ctypes.CDLL('./kernels/matmul.so')
 
-lib_matmul.args = [ctypes.POINTER(ctypes.c_float),
-                   ctypes.POINTER(ctypes.c_float),
-                   ctypes.POINTER(ctypes.c_float),
-                   ctypes.c_int, ctypes.c_int, ctypes.c_int]
+lib_matmul.argtypes = [ctypes.POINTER(ctypes.c_float),
+                       ctypes.POINTER(ctypes.c_float),
+                       ctypes.POINTER(ctypes.c_float),
+                       ctypes.c_int, ctypes.c_int, ctypes.c_int]
 lib_matmul.restype = None
 
 def matmul_cuda(A: torch.Tensor, B: torch.Tensor) -> torch.Tensor:
   assert A.is_cuda and B.is_cuda
-  assert A.shape == torch.float32
+  assert A.dtype == torch.float32
   assert A.is_contiguous()
   assert B.is_contiguous()
 
@@ -31,6 +31,6 @@ def matmul_cuda(A: torch.Tensor, B: torch.Tensor) -> torch.Tensor:
   B_ptr = ctypes.cast(B.data_ptr(), ctypes.POINTER(ctypes.c_float))
   C_ptr = ctypes.cast(C.data_ptr(), ctypes.POINTER(ctypes.c_float))
 
-  lib_matmul.matmu_kernel(A_ptr, B_ptr, C_ptr, M, N, K)
+  lib_matmul.matmul_kernel(A_ptr, B_ptr, C_ptr, M, N, K)
 
   return C
