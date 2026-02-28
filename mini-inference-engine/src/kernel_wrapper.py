@@ -31,6 +31,6 @@ def matmul_cuda(A: torch.Tensor, B: torch.Tensor) -> torch.Tensor:
   B_ptr = ctypes.cast(B.data_ptr(), ctypes.POINTER(ctypes.c_float))
   C_ptr = ctypes.cast(C.data_ptr(), ctypes.POINTER(ctypes.c_float))
 
-  lib_matmul.matmul_kernel(A_ptr, B_ptr, C_ptr, M, N, K)
+  lib_matmul.matmul_cuda(A_ptr, B_ptr, C_ptr, M, N, K)
 
   return C
