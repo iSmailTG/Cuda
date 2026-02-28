@@ -7,7 +7,7 @@ if not os.path.exists('./kernels/matmul.so'):
   subprocess.run(['nvcc', '-shared', '-o', './kernels/matmul.so', './kernels/matmul.cu', '-Xcompiler',
                   '-fPIC', '-O2'], check=True)
 
-lib_matmul = ctypes.CDLL('./matmul.so')
+lib_matmul = ctypes.CDLL('./kernels/matmul.so')
 
 lib_matmul.args = [ctypes.POINTER(ctypes.c_float),
                    ctypes.POINTER(ctypes.c_float),
