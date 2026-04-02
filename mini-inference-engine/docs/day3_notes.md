@@ -72,7 +72,7 @@ The CPU reads the result before the GPU finishes writing it. Tests may pass some
 We are now reading column-major instead of row-major, the kernel computes the wrong dot product. It compiles and runs without errors : it just produces garbage numbers: worst kind of bug.
 
 **Experiment 4 — Remove the guard condition:**
-Threads in the last block that are out of bounds write to arbitrary GPU memory addresses. This causes memory corruption. The result may be wrong or the program may crash. On small matrices that divide evenly by 16, you won't see it — which makes it even more dangerous.
+Threads in the last block that are out of bounds write to arbitrary GPU memory addresses. This causes memory corruption. The result may be wrong or the program may crash. On small matrices that divide evenly by 16, you won't see it , which makes it even more dangerous.
 
 ---
 
@@ -105,11 +105,3 @@ Every single one of those is a matrix multiply. The kernel written on Day 2 is t
 
 ---
 
-## Day 3 Checkpoint
-
-- [x] Wrote `matmul.cu` from memory with no more than 3 gaps
-- [x] Can explain row-major indexing with a concrete 3×3 example
-- [x] Understand why ceiling division is required for grid dimensions
-- [x] Know where each matmul appears in the Llama attention block
-- [x] `docs/day3_kernel_explained.md` exists — every line explained in plain English
-- [x] Committed and pushed
