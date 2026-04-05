@@ -2,7 +2,7 @@ from torch.utils.cpp_extension import load
 
 matmul_ext = load(
   name  = "matmul_ext",
-  sources = ['tem/matmul_kernel.cu'],
+  sources = ['tem/matmul_ext.cu'],
   verbose = True
 )
 
