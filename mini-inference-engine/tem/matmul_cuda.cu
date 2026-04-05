@@ -1,6 +1,6 @@
 #include <cuda_runtime.h>
 
-__global__ void matmul_kernel(float* A,float* B, float* C, M, N, K)
+__global__ void matmul_kernel(float* A,float* B, float* C, int M, int N, int K)
 {
   int row = blockIdx.y * blockDim.y + threadIdx.y;
   int col = blockIdx.x * blockDim.x + threadIdx.x;
