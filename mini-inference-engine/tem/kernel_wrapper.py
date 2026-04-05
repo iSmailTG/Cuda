@@ -4,7 +4,7 @@ import os
 import subprocess
 import ctypes
 
-if not os.path.exists('./tem/matmul_kernel.so'):
+if not os.path.exists('./tem/matmul_cuda.so'):
   subprocess.run(['nvcc', '-shared', '-o', './tem/matmul_cuda.so', './tem/matmul_cuda.cu', '-Xcompiler', '-fPIC', '-O2'])
 
 matmul_lib = ctypes.CDLL('./tem/matmul_cuda.so')
