@@ -16,14 +16,14 @@ __global__ void matmul_kernel(float* A,float* B, float* C, M, N, K)
 
   }
 }
-extern 'C'
+extern "C"
 {
-  void matmul_cuda(float* A, float* B, float* C, M, N, K)
+  void matmul_cuda(float* A, float* B, float* C, int M, int N, int K)
   {
-    dim3 blockIdx(16, 16);
-    dim3 blockDim((M + 15) / 16, (N + 15) / 16);
+    dim3 blockSize(16, 16);
+    dim3 gridSize((N + 15) / 16, (M + 15) / 16);
 
-    matmul_kernel<<<blockIdx, blockDim>>>(A, B, C, M, N, K);
+    matmul_kernel<<<gridSize, blockSize>>>(A, B, C, M, N, K);
     cudaDeviceSynchronize();
   }
 }
