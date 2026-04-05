@@ -21,7 +21,7 @@ torch::Tensor matmul_ext(torch::Tensor A, torch::Tensor B)
 {
   TORCH_CHECK(A.is_cuda(), "must be on cuda");
   TORCH_CHECK(B.is_cuda(), "must be on cuda");
-  TORCH_CHECK(A.dtype == torch::kFloat32, "support float32 only");
+  TORCH_CHECK(A.dtype() == torch::kFloat32, "support float32 only");
   TORCH_CHECK(A.is_contiguous(), "must be contiguous");
   TORCH_CHECK(B.is_contiguous(), "must be contiguous");
   TORCH_CHECK(A.size(1) == B.size(0), "A col mus match ");
