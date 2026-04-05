@@ -1,13 +1,13 @@
 
 import torch
 import os
-import ctypes
 import subprocess
+import ctypes
 
-if not os.path.exists('./tem/matmul_from_memory.so'):
-  subprocess.run(['nvvc', '-shared', '-o', './tem/matmul_from_memory.so', './tem/matmul_from_memory.cu', '-Xcompiler', '-fPIC', '-O2'])
+if not os.path.exists('./tem/matmul_kernel.so'):
+  subprocess.run(['nvcc', '-shared', '-o', './tem/matmul_kernel.so', './tem/matmul_kernel.cu', '-Xcompiler', '-fPIC', '-O2'])
 
-matmul_lib = ctypes.CDLL('./tem/matmul_from_memory.so')
+matmul_lib = ctypes.CDLL('./tem/matmul_kernel')
 matmul_lib.matmul_cuda.argtypes = [
     ctypes.POINTER(ctypes.c_float),
     ctypes.POINTER(ctypes.c_float),
@@ -18,25 +18,20 @@ matmul_lib.matmul_cuda.argtypes = [
 ]
 matmul_lib.matmul_cuda.restype = None
 
-
 def matmul_cuda(A: torch.Tensor, B: torch.Tensor) -> torch.Tensor:
   assert A.is_cuda and B.is_cuda, "must be on GPU"
   assert A.dtype == torch.float32, "support float32 only"
-  assert A.is_coniguous(), "must be contiguous"
-  assert B.is_contiguous(), "must be contiguous"
+  assert A.is_contiguous(), "Must be contiguous"
+  assert B.is_contiguous(), "Must be contiguous"
 
-  M, K = A.shape
+  M, K  = A.shape
   K2, N = B.shape
-  assert K == K2, "A cols must match B row is shape"
+  assert K == K2, "A col must match B row"
+  C = torch.zeros(M, N, device='cuda', dtype = torch.float32)
 
-  C = torch.zeros(M, N, device='cuda', dtype= torch.float32)
-  
   A_ptr = ctypes.cast(A.data_ptr(), ctypes.POINTER(ctypes.c_float))
   B_ptr = ctypes.cast(B.data_ptr(), ctypes.POINTER(ctypes.c_float))
   C_ptr = ctypes.cast(C.data_ptr(), ctypes.POINTER(ctypes.c_float))
 
   matmul_lib.matmul_cuda(A_ptr, B_ptr, C_ptr, M, N, K)
   return C
-  
-  
-  matmul_lib.matmul_cuda

@@ -1,9 +1,9 @@
-#include <cuda_runtime.h>
+#include <torch/extension.h>
 
-__global__ void matmul_kernel(float* A, float* B, float* C, int M, int N, int K)
+__global__ void matmul_kernel(float* A,float* B, float* C, M, N, K)
 {
   int row = blockIdx.y * blockDim.y + threadIdx.y;
-  int col = blockIdx.x * blockDim.x + threadIdx.x;
+  int col = blockIdx.x * blockDim.y + threadIdx.x;
 
   if(row < M && col < N)
   {
@@ -12,31 +12,37 @@ __global__ void matmul_kernel(float* A, float* B, float* C, int M, int N, int K)
     {
       sum += A[row * K + i] * B[i * N + col];
     }
-    C[row * N + col = sum]
+    C[row * N + col] = sum;
+
   }
 }
 
-torch::Tensor matmul_cuda_ext(torch::Tensor A, torch::Tensor B)
+torch::Tensor matmul_ext(torch::Tensor A, torch::Tensor B)
 {
-  TORCH_CHECK(A.is_cuda(), "must be on GPU");
-  TORCH_CHECK(B.is_cuda(), "must be on GPU");
-  TORCH_CHECK(A.dtype() == torch.kFloat32, "support float only");
+  TORCH_CHECK(A.is_cuda(), "must be on cuda");
+  TORCH_CHECK(B.is_cuda(), "must be on cuda");
+  TORCH_CHECK(A.dtype == torch.kFloat32, "support float32 only");
   TORCH_CHECK(A.is_contiguous(), "must be contiguous");
-  TORCH_CHECK(B.is_contiguous(), "must be contiguos");
-  TORCH_CHECK(A.size(1) == B.size(0), "A col & B row must be equal");
+  TORCH_CHECK(B.is_contiguous(), "must be contiguous");
+  TORCH_CHECK(A.size(1) == B.size(0), "A col mus match ");
 
   int M = A.size(0), K = A.size(1), N = B.size(1);
-  auto C = torch::zeros({M, N}, A.options());
+  auto C = torch.zeros({M, N}, A.options());
 
-  matmul_kernel<<<gridDim, blockDim>>(
-    A.data_ptr<float>();
-    B.data_ptr<float>();
-    C.data_ptr<float>();
-    M, N, K
-  );
+  dim3 blockDim(16, 16);
+  dim3 gridDim((N + 15) / 16, (M + 15) / 16);
+
+  matmul_kernel<<<griDim, blockDim>>>(
+    A.data_ptr<float>(),
+    B.data_ptr<float>(),
+    C.data_ptr<float>(),
+    M, N, K);
+
   cudaDeviceSynchronize();
-  return C;
+  return C;    
+}
 
-  PYBIND11_MODULE(TORCH_EXTENSION_NAME, m)
-  m.def("matmul", &matmul_cuda.ext, "Matrix Multiplay (CUDA)")
+PYBIND11_MODULE(TORCH_EXTENSION_NAME, m)
+{
+  m.def("matmul", &matmul_kernel, "Matrix Multiply (CUDA)");
 }
