@@ -3,7 +3,7 @@
 __global__ void matmul_kernel(float* A,float* B, float* C, M, N, K)
 {
   int row = blockIdx.y * blockDim.y + threadIdx.y;
-  int col = blockIdx.x * blockDim.y + threadIdx.x;
+  int col = blockIdx.x * blockDim.x + threadIdx.x;
 
   if(row < M && col < N)
   {
