@@ -20,17 +20,17 @@ def bench(fn, A, B, label, n=50):
   ms = start.elapsed_time(end)
   gflops = flops / (ms / 1000) / 1e9
 
-  print(f"{label}: {ms} ms | {gflops} GFLOPS/s")
+  print(f"{label:35s}: {ms:7.3f} ms | {gflops:8.1f} GFLOPS/s")
   return ms, gflops
 
 print(f"{'operation':<35} {'time':>7} {'GFLOPS/s':>10}")
-print("-" * 50)
+print("-" * 60)
 
 M, N, K= 512, 512, 512                          
 A = torch.randn(M, K, device='cuda', dtype = torch.float32)
 B = torch.randn(K, N, device='cuda', dtype = torch.float32)
 
-t1, g1 = bench(matmul_cuda_V2, A, B, f"My Kernel: {M}*{K} @ {K}*{N}")
-t2, g2 = bench(torch.matmul, A, B, f"Pytorch CuBLAS: {M}*{K} @ {K}*{N} ")
-print(f"\nSpeedup factor: {t2/t1}x")
-print(f"My kernel uses {g1/(g2*100)}% of compute that Pytorch uses")
+t1, g1 = bench(matmul_cuda_V2, A, B, f"My Kernel: ({M} *{ K}) @ ({K}*{N})")
+t2, g2 = bench(torch.matmul, A, B, f"Pytorch CuBLAS: ({M} * {K}) @ ({K} * {N}) ")
+print(f"\nSpeedup factor: {g2/g2:.1f}x")
+print(f"My kernel uses {g1/g2*100:.1f}% of compute that Pytorch uses")
