@@ -32,5 +32,5 @@ B = torch.randn(K, N, device='cuda', dtype = torch.float32)
 
 t1, g1 = bench(matmul_cuda_V2, A, B, f"My Kernel: ({M} *{ K}) @ ({K}*{N})")
 t2, g2 = bench(torch.matmul, A, B, f"Pytorch CuBLAS: ({M} * {K}) @ ({K} * {N}) ")
-print(f"\nSpeedup factor: {g2/g2:.1f}x")
+print(f"\nSpeedup factor: {g1/g2:.1f}x")
 print(f"My kernel uses {g1/g2*100:.1f}% of compute that Pytorch uses")
