@@ -28,7 +28,7 @@ def casual_mask():
   out1 = attn(x1)
   out2 = attn(x2)
 
-  diff = (out1 - out2).abs().max().item()
+  diff = (out1[0, 0] - out2[0, 0]).abs().max().item()
 
   assert diff < 1e-5, f"Token 0 should not change, diff: {diff:.6f}"
   print(f"Casual Mask Test passed, {diff:.2e}")
