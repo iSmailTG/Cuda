@@ -41,3 +41,10 @@ def no_nan():
 
   assert not torch.isnan(out), "NaN detected in attention output!"
   print("No NaN in output.")
+
+
+if __name__=="__main__":
+  test_shapes()
+  casual_mask()
+  no_nan()
+  print("All tests Passed.")
