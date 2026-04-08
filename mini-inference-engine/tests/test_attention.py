@@ -39,7 +39,7 @@ def no_nan():
   x = torch.randn(1, 32, hidden_size, device='cuda')
   out = attn(x)
 
-  assert not torch.isnan(out), "NaN detected in attention output!"
+  assert not torch.isnan(out).any(), "NaN detected in attention output!"
   print("No NaN in output.")
 
 
