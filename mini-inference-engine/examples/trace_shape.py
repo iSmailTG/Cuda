@@ -30,7 +30,7 @@ V = V.view(BATCH, SEQ, NUM_HEADS, HEAD_DIM).transpose(1, 2)
 
 print(f"K before transpose(-2, -1): {tuple(K.shape)}")
 K_T = K.transpose(-2, -1)
-print(f"K after transpose(-2, -1): {tuple(K_T.shape)}")
+print(f"K after transpose(-2, -1): {tuple(K.shape)}")
 
 scores = torch.matmul(Q, K_T) / math.sqrt(HEAD_DIM)
 print(f"scores shape: {tuple(scores.shape)}")
