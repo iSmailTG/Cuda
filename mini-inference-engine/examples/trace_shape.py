@@ -37,7 +37,7 @@ print(f"scores shape: {tuple(scores.shape)}")
 
 
 mask = torch.triu(torch.ones(SEQ, SEQ,device= x.device), diagonal= 1).bool()
-scores = scores.masked_fill(mask, ("-inf"))
+scores = scores.masked_fill(mask, float("-inf"))
 
 attn = torch.softmax(scores, dim=-1)
 print(f"Attention Weights: {tuple(attn.shape)}")
@@ -46,5 +46,6 @@ print(f"Attention Weights: {tuple(attn.shape)}")
 out = torch.matmul(attn, V)
 print(f"output: {tuple(out.shape)}")
 
-out = out.transpose(1, 2).contiguous().view(BATCH, SEQ, HIDDEN_SIZE)
+out = out.transpose(1, 2).contiguous()
+out = out.view(BATCH, SEQ, HIDDEN_SIZE)
 print(f"outputs after getting back to initial shape: {tuple(out.shape)}")
