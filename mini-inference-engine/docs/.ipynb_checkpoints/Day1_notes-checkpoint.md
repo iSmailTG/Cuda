@@ -43,14 +43,14 @@ Use concrete numbers: `batch=1, seq_len=8, hidden_size=512, num_heads=8, head_di
 
 ## Multi-Head Attention — Why Multiple Heads?
 
-We use multi-head attention so the model can focus on different types of relationships (e.g., short-term vs. long-term, syntactic vs. semantic) in parallel, capturing richer representations than a single attention mechanism.
-
+_(Write your explanation here after studying)_
 
 ---
 
 ## Causal Masking — Why?
 
-We use causal masking to prevent the model from seeing future tokens during training, ensuring that the prediction for a given position depends only on previous tokens.
+_(Write your explanation here after studying)_
+
 ### Why `-inf` and not `0`?
 
 _(Write your explanation here)_
