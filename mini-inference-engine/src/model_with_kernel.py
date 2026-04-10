@@ -52,7 +52,7 @@ class MultiHeadAttention(nn.Module):
 
     batch, seq_len, _ = x.shape
 
-    Q = q_proj(x).view(batch, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
+    Q = self.q_proj(x).view(batch, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
     K = k_proj(x).view(batch, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
     V = v_proj(x).view(batch, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
 
