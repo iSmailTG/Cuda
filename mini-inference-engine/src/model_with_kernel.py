@@ -53,8 +53,8 @@ class MultiHeadAttention(nn.Module):
     batch, seq_len, _ = x.shape
 
     Q = self.q_proj(x).view(batch, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
-    K = k_proj(x).view(batch, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
-    V = v_proj(x).view(batch, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
+    K = self.k_proj(x).view(batch, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
+    V = self.v_proj(x).view(batch, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
 
     scores_list = []
     for b in range(batch):
@@ -85,7 +85,7 @@ class MultiHeadAttention(nn.Module):
     outputs = torch.cat(outs_list, dim=0) # shape -> (batch, head, seq_len, head_dim)
 
     outputs = outputs.transpose(1, 2).contiguous().view(batch, seq_len, self.hidden_size)
-    outputs = o_proj(outputs)
+    outputs = self.o_proj(outputs)
 
     return outputs
 
