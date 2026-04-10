@@ -7,7 +7,7 @@ import ctypes
 import subprocess
 
 if not os.path.exists('./kernels/matmul.so'):
-  subprocess.run(['nvcc', '-o', './kernels/matmul.so', './kernels/matmul.cu', '-Xcompiler', '-fPIC', '-O2'])
+  subprocess.run(['nvcc','-shared', '-o', './kernels/matmul.so', './kernels/matmul.cu', '-Xcompiler', '-fPIC', '-O2'])
 
 matmul_lib = ctypes.CDLL('./kernels/matmul.so')
 matmul_lib.matmul_cuda.argtypes = [
