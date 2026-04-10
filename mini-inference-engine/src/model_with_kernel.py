@@ -62,9 +62,9 @@ class MultiHeadAttention(nn.Module):
       head_scores = []
       for h in range(self.num_heads):
         Q_2d = Q[b, h].contiguous() # shape -> (seq_len, head_dim)
-        K_2d = K[b, h].contiguous().T # shape -> (head_dim, seq_len)
+        K_2d = K[b, h].T.contiguous() # shape -> (head_dim, seq_len)
         score = matmul_cuda(Q_2d, K_2d) / math.sqrt(self.head_dim)
-        head_scores.append(score.unsqueeze()) # shape -> (1, seq_len, seq_len)
+        head_scores.append(score.unsqueeze(0)) # shape -> (1, seq_len, seq_len)
       scores_list.append(torch.cat(head_scores, dim=0).unsqueeze(0)) # shape -> (1, head, seq_len, seq_len)
     scores = torch.cat(scores_list, dim=0) # shape -> (batch, head, seq_len, seq_len)
 
