@@ -2,7 +2,7 @@
 import torch
 import sys
 
-sys.path.appen('src')
+sys.path.append('src')
 from model_with_kernel import MultiHeadAttention as mha
 
 def test_shape():
