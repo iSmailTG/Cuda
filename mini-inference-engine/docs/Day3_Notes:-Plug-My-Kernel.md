@@ -12,12 +12,12 @@
 * Call the kernel, the reassemble them again to 4D matrices.
 ## Mental Model:
 
-4D attention tensor
-       ↓
-  Python loop (batch × heads)
-       ↓
-  slice → 2D matrix           ← your kernel operates here
-       ↓
-  matmul_cuda(Q_2d, K_2d)
-       ↓
-  reassemble → 4D tensor
+4D attention tensor  
+       ↓  
+  Python loop (batch × heads)  
+       ↓  
+  slice → 2D matrix           ← your kernel operates here  
+       ↓  
+  matmul_cuda(Q_2d, K_2d)  
+       ↓  
+  reassemble → 4D tensor  
