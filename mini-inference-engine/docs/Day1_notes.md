@@ -53,11 +53,11 @@ We use multi-head attention so the model can focus on different types of relatio
 We use causal masking to prevent the model from seeing future tokens during training, ensuring that the prediction for a given position depends only on previous tokens.
 ### Why `-inf` and not `0`?
 
-_(Write your explanation here)_
+Using -inf instead of 0 ensures that after the softmax operation, the masked positions receive zero attention weight.
+If you used 0, softmax would still assign them a positive probability (since exp(0) = 1), allowing the model to attend to forbidden positions. With -inf, exp(-inf) = 0, so those positions contribute nothing. 
 
 ---
 
-## Key Code Patterns to Remember
 
 ### The reshape + transpose pattern:
 ```python
