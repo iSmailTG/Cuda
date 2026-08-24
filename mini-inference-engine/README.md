@@ -7,3 +7,5 @@
 * day 4 back again
 * day 5 keep pushing
 * day 6 recover
+* day 7 no electricity no commit
+* day 8 back again
