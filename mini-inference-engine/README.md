@@ -20,3 +20,5 @@
 * day 17 same
 * day 18 same
 * day 19 same
+* day 20 - 21 - 22 no electrecity
+
