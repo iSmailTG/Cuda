@@ -22,3 +22,4 @@
 * day 19 same
 * day 20 - 21 - 22 no electrecity
 * day 23 back again
+* day 24 same
