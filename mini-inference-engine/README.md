@@ -23,4 +23,7 @@
 * day 20 - 21 - 22 no electrecity
 * day 23 back again
 * day 24 same
+wmctrl -a "Terminal" || gnome-terminal
 * day 25 same
+wmctrl -a "Terminal" || gnome-terminal
+* day 26 same
