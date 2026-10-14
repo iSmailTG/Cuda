@@ -53,3 +53,4 @@
 * day 3 w
 * day 4 e
 * day 5
+* day 6
