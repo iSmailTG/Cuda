@@ -48,16 +48,4 @@
 * day 49 same
 * day 50 same
 
-* day 1 start
-* day 2 e
-* day 3 w
-* day 4 e
-* day 5
-* day 6
-* day 7
-* day 8
-* day 9 keep up
-* day 10 return
-* day 11
-* day 12
-* day 13
+
