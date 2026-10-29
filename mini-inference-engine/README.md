@@ -5,47 +5,4 @@
 * day 2
 * day 3 no electricity no commit 
 * day 4 back again
-* day 5 keep pushing
-* day 6 recover
-* day 7 no electricity no commit
-* day 8 back again
-* day 9 keep pushing
-* day 10 keep keep
-* day 11 same
-* day 12 same
-* day 13 same
-* day 14 same
-* day 15 same
-* day 16 same
-* day 17 same
-* day 18 same
-* day 19 same
-* day 20 - 21 - 22 no electrecity
-* day 23 back again
-* day 24 same
-* day 25 same
-* day 26 same
-* day 27 same
-* day 28 same
-* day 29 & 30 same
-* day 31 same
-* day 32 same
-* dat 33 same
-* day 34 same
-* day 35 same
-* day 36 same
-* day 37 same
-* day 38 same
-* day 39 & 40 same
-* day 41 same
-* day 42 same
-* day 43 same
-* day 44 same
-* day 45 same
-* day 46 same
-* day 47 same
-* day 48 same
-* day 49 same
-* day 50 same
-
 
