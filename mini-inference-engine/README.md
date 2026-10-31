@@ -5,4 +5,5 @@
 * day 2
 * day 3 no electricity no commit 
 * day 4 back again
-day 8
+day 5
+day 6
